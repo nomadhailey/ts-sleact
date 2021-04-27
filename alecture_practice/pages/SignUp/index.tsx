@@ -11,8 +11,22 @@ const SignUp = () => {
     password: '',
     passwordCheck: '',
   });
+  const { email, nickname, password, passwordCheck } = values;
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
+    axios
+      .post('/api/users', {
+        email,
+        nickname,
+        password,
+      })
+      .then((response) => {
+        console.log('response', response);
+      })
+      .catch((error) => {
+        console.log('error', error);
+      })
+      .finally();
   }, []);
   // {mismatchError && <Error>비밀번호가 일치하지 않습니다.</Error>} => ChangeEvent
   // {!nickname && <Error>닉네임을 입력해주세요.</Error>} => submitEvent

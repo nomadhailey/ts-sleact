@@ -8,6 +8,11 @@ const useInput = <T>(initialState: T): ReturnTypes<T> => {
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
+      // const { email, nickname, password, passwordCheck } = values;
+      // console.log('name', name);
+      // if (name === 'passwordCheck') {
+      //   if (password.value === '패스워드') console.log('패스워드다');
+      // }
       setValues({
         ...values,
         [name]: value,
