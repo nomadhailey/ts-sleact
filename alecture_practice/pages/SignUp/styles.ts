@@ -46,7 +46,7 @@ export const StyledButton = styled.button`
   box-shadow: rgb(0 0 0 / 30%) 0px 1px 4px;
 `;
 
-export const LinkToLoginContainer = styled.div`
+export const LinkContainer = styled.div`
   margin: 0 auto;
   width: 400px;
   & a {
