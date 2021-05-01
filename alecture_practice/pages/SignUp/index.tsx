@@ -1,10 +1,13 @@
 import useInput from '@hooks/useInputs';
 import React, { useCallback, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Container, InputBox, StyledForm, StyledButton, LinkContainer, Error, Success } from './styles';
+import useSWR from 'swr';
+import fetcher from '@utils/fetcher';
 
 const SignUp = () => {
+  const { data, error, revalidate } = useSWR('/api/users', fetcher);
   const [values, handleChange] = useInput({
     email: '',
     nickname: '',
@@ -37,6 +40,14 @@ const SignUp = () => {
     },
     [email, nickname, password, errorMsg],
   );
+
+  if (data === undefined) {
+    return <div>로딩중..</div>;
+  }
+
+  if (data) {
+    return <Redirect to="/workspace/channel" />;
+  }
   // {mismatchError && <Error>비밀번호가 일치하지 않습니다.</Error>} => ChangeEvent
   // {!nickname && <Error>닉네임을 입력해주세요.</Error>} => submitEvent
   // {signUpError && <Error>{signUpError}</Error>} => 서버로부터 받은 에러
