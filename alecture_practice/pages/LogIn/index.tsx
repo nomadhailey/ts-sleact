@@ -1,4 +1,4 @@
-import useInput from '@hooks/useInputs';
+import useInput from '@hooks/useInput';
 import fetcher from '@utils/fetcher';
 import axios from 'axios';
 import React, { FormEvent, useCallback, useState } from 'react';
